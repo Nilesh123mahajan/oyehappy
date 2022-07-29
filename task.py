@@ -1,0 +1,20 @@
+from time import sleep
+from RPA.Browser.Selenium import Selenium
+
+browser = Selenium()
+browser.open_available_browser("https://www.oyehappy.com/")
+browser.maximize_browser_window()
+browser.scroll_element_into_view("//div[@class='section-header section-header--with-link']")
+browser.go_to("https://www.oyehappy.com/collections/on-rakhi/products/secret-photo-rakhi")
+browser.wait_until_element_is_visible("//button[@name='add']",timeout=60)
+browser.click_element("//button[@name='add']")
+browser.wait_until_element_is_visible("//a[@class='cart__item-name']",timeout=60)
+#print(browser.get_text("//div[@class='js-qty__wrapper']"))
+item=browser.get_text("//a[@class='cart__item-name']")
+print(f"product is- {item}")
+quantity=browser.get_element_attribute("//input[@id='cart_updates_42419870728354:50abb8ed81ff49e1d374f1a83bbb0803']","value")
+print(f"quantity is- {quantity}")
+browser.click_element("//button[@name='checkout']")
+#vr=browser.get_webelements("//span[text()='Add to cart']")
+#browser.click_element(vr[0])
+sleep(15)
